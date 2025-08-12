@@ -32,7 +32,7 @@ func TestGetApiKey(t *testing.T) {
 		"malformed tag auth header":    {malformedTagAuthHeader, "", errors.New("malformed authorization header")},
 		"malformed length auth header": {malformedLengthAuthHeader, "", errors.New("malformed authorization header")},
 		//"no key auth header":           {noKeyAuthHeader, "", errors.New("no authorization header included")},
-		"good key auth header": {goodKeyAuthHeader, "g00dK3y", nil},
+		"good key auth header": {goodKeyAuthHeader, "g00dk3y", nil},
 	}
 
 	for name, tc := range testCases {
