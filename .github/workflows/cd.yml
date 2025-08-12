@@ -44,5 +44,5 @@ jobs:
         run: ./scripts/migrateup.sh
 
       - name: Deploy to Cloud Run
-        run: gcloud run deploy notely --image us-central1-dokcer.pkg/neon-partition-468816-d2/notely-ar-repo/app:latest --region us-central1 --allow-unauthenticated --project neon-partition-468816-d2 --max-instances=4
+        run: gcloud run deploy notely --image us-central1-docker.pkg.dev/neon-partition-468816-d2/notely-ar-repo/app:latest --region us-central1 --allow-unauthenticated --project neon-partition-468816-d2 --max-instances=4
 
