@@ -33,6 +33,9 @@ jobs:
       - name: Add Go bin to PATH
         run: echo "$HOME/go/bin" >> $GITHUB_PATH
 
+      - name: Check out code
+        uses: actions/checkout@v4
+
       - name: Verify formatting
         run: test -z $(go fmt ./...) && echo $?
 
