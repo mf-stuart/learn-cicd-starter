@@ -13,6 +13,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Install gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -20,3 +23,27 @@ jobs:
 
       - name: Run Go tests
         run: go test -cover ./...
+
+      - name: Gosec check
+        run: gosec ./...
+
+  style:
+    name: Style
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+      - name: Add Go bin to PATH
+        run: echo "$HOME/go/bin" >> $GITHUB_PATH
+
+      - name: Verify formatting
+        run: test -z $(go fmt ./...) && echo $?
+
+      - name: Staticcheck formatting
+        run: staticcheck ./...
