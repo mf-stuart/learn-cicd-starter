@@ -27,4 +27,4 @@ jobs:
 
     steps:
       - name: Verify formatting
-        run: test -z $(go fmt ./...) && run echo $?
+        run: test -z $(go fmt ./...) && echo $?
