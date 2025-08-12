@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
     steps:
 
       - name: Checkout
@@ -36,6 +39,9 @@ jobs:
 
       - name: Push image
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/neon-partition-468816-d2/notely-ar-repo/app:latest .
+
+      - name: Migrate database
+        run: ./scripts/migrateup.sh
 
       - name: Deploy to Cloud Run
         run: gcloud run deploy notely --image us-central1-dokcer.pkg/neon-partition-468816-d2/notely-ar-repo/app:latest --region us-central1 --allow-unauthenticated --project neon-partition-468816-d2 --max-instances=4
